@@ -2,31 +2,46 @@
 // Реализовать простой калькулятор
 
 import java.util.Scanner;
+
 public class hw_3 {
    public static void main(String[] args) {
-      double num1;
-      double num2;
-      double ans;
-      char op;
-      Scanner reader = new Scanner(System.in);
-      System.out.print("Введите два числа: \n");
-      num1 = reader.nextDouble();
-      num2 = reader.nextDouble();
-      System.out.print("\nВведите операцию вычисления (+, -, *, /): ");
-      op = reader.next().charAt(0);
-      switch(op) {
-         case '+': ans = num1 + num2;
-            break;
-         case '-': ans = num1 - num2;
-            break;
-         case '*': ans = num1 * num2;
-            break;
-         case '/': ans = num1 / num2;
-            break;
-         default:  System.out.printf("Ошибка! Введите правильную операцию вычисления.\n");
-            return;
-      }
-      System.out.print("\nПолученный результат:\n");
-      System.out.printf(num1 + " " + op + " " + num2 + " = " + ans + "\n");
+       Scanner iScanner = new Scanner(System.in);
+       Scanner oScanner = new Scanner(System.in);
+       System.out.print("\nВведите первое число: ");
+       double x = iScanner.nextDouble();
+       System.out.print("Введите второе число: ");
+       double y = iScanner.nextDouble();
+       System.out.print("Введите оперцию (+, -, *, /): ");
+       String operate = oScanner.nextLine();
+       iScanner.close();
+       oScanner.close();
+       boolean corect = true;
+       double res = 0;
+       switch(operate){
+           case "+":
+           res = x + y;
+           break;
+           case "-":
+           res = x - y;
+           break;
+           case "*":
+           res = x * y;
+           break;
+           case "/":
+           if(y != 0) res = x / y;
+           else {
+               System.out.println("\nНа ноль делить нельзя");
+               corect = false;
+           }
+           break;
+       default: 
+           System.out.println("\nТакой операции нет");
+           break;
+       }
+       if (corect) {
+           System.out.printf("\n%.2f %s %.2f = %.2f\n", x, operate, y, res);
+       }
+
    }
+   
 }
